@@ -8,11 +8,7 @@ typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 typedef vector<int> vi;
 typedef vector<ll> vl;
-bool isint(float a)            
-{                          
-if(a==int(a)) return true;
-else return false;           
-}                        
+typedef vector<string> vs;
 
 int modpow(int a, int b, int n){
     long long x=1, y=a; 
@@ -27,30 +23,43 @@ int modpow(int a, int b, int n){
 }
 
 
+vs gray_code(ll n)
+{
+    if(n==1)
+    { 
+        vs v1{"0","1"};
+        return v1;
+    }
+    else
+    {
+        vs x=gray_code(n-1);
+        vector<string> r(x.rbegin(), x.rend());
+        fo(i,0,r.size())
+            r[i]="1"+r[i];
 
+        fo(i,0,x.size())
+            x[i]="0"+x[i]; 
+
+        for(auto i: r)
+            x.push_back(i);
+        
+        return x;
+    }
+
+}
 
 void solve()
 {
-    ll a,b;
-    cin>>a>>b;
-    if(a>b) swap(a,b);
-    if(2*a<b) cout<<"NO"<<endl;
-    else
-    {
-        a%=3;
-        b%=3;
-        if(a>b) swap(a,b);
-        if((a==0 && b==0 ) || (a==1 && b==2))
-        cout<<"YES"<<endl;
-        else
-        cout<<"NO"<<endl;
-    }
+    ll n;
+    cin>>n;
+    vs t=gray_code(n);
+    for(auto i:t)
+        cout<<i<<endl;
 }
-
 int main()
 {   ll t;
-    cin>>t;
-    //t=1;
+    //cin>>t;
+    t=1;
     while(t--)
     {
         solve();

@@ -8,11 +8,7 @@ typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 typedef vector<int> vi;
 typedef vector<ll> vl;
-bool isint(float a)            
-{                          
-if(a==int(a)) return true;
-else return false;           
-}                        
+
 
 int modpow(int a, int b, int n){
     long long x=1, y=a; 
@@ -31,26 +27,30 @@ int modpow(int a, int b, int n){
 
 void solve()
 {
-    ll a,b;
-    cin>>a>>b;
-    if(a>b) swap(a,b);
-    if(2*a<b) cout<<"NO"<<endl;
-    else
+    ll n;
+    cin>>n;
+    n=n-1;
+    vector<string> vs{"0","1"};
+    while(n--)
     {
-        a%=3;
-        b%=3;
-        if(a>b) swap(a,b);
-        if((a==0 && b==0 ) || (a==1 && b==2))
-        cout<<"YES"<<endl;
-        else
-        cout<<"NO"<<endl;
-    }
-}
+        vector<string> r(vs.rbegin(), vs.rend());
+        fo(i,0,r.size())
+            r[i]="1"+r[i];
 
+        fo(i,0,vs.size())
+            vs[i]="0"+vs[i]; 
+
+        for(auto i: r)
+            vs.push_back(i);
+    }
+    
+    for(auto i:vs)
+        cout<<i<<endl;
+}
 int main()
 {   ll t;
-    cin>>t;
-    //t=1;
+    //cin>>t;
+    t=1;
     while(t--)
     {
         solve();
